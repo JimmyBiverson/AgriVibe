@@ -29,9 +29,21 @@ AgriVibe is a production-ready, 3D-enhanced agribusiness and veterinary manageme
   - Integrated top bar switcher for testing and exploring each role workspace instantly.
 
 ### 3. Back-Office Admin Intelligence (Filament v5)
-- Glowing gradient line charts for platform engagement.
-- 3D pie/donut breakdown of enterprise distribution.
-- Real-time system performance monitors (SMS Gateway, Queues, Database size, Active sessions).
+- **Live Telemetry & Production Line Charts**:
+  - Daily milk yield collection tracking with smooth bezier curves and area shading.
+  - Egg collections (trays) and feed conversion monitoring across registered farms.
+- **Enterprise Distribution Donut**:
+  - Breakdown of active bio-assets across dairy cattle, Boer goats, commercial broilers/layers, and Nile Tilapia ponds.
+- **Glowing Platform Key Metrics**:
+  - Total users and digital farms registered.
+  - Total monitored bio-assets (head + flock counts).
+  - Gross agribusiness transaction turnover (UGX).
+  - Consumer safety monitoring: active antibiotic/medicine withdrawal warning count.
+- **3D System Intelligence Core**:
+  - Live SMS/USSD gateway connectivity & uptime monitoring (99.8%).
+  - Real-time encrypted telemedicine video stream sessions.
+  - Drug withholding quarantine monitors.
+  - Offline sync queue pipeline status.
 
 ---
 
