@@ -48,18 +48,18 @@ class AgriVibePlatformStatsWidget extends BaseWidget
                 ->chart([300, 650, 1100, 1600, 2050, $totalLivestock ?: 2258])
                 ->color('warning'),
 
-            Stat::make('Gross Agribusiness Ledger', 'UGX ' . number_format($grossTurnover))
+            Stat::make('Gross Agribusiness Ledger', 'UGX '.number_format($grossTurnover))
                 ->description('Milk, eggs, livestock & inputs trade')
                 ->descriptionIcon('heroicon-m-banknotes')
                 ->chart([150000, 420000, 850000, 1150000, $grossTurnover ?: 1379000])
                 ->color('success'),
 
-            Stat::make('Consumer Safety (Withdrawal Alerts)', number_format($activeWithdrawals) . ' Active')
+            Stat::make('Consumer Safety (Withdrawal Alerts)', number_format($activeWithdrawals).' Active')
                 ->description('Active milk/meat antibiotic withholding')
                 ->descriptionIcon('heroicon-m-shield-exclamation')
                 ->color($activeWithdrawals > 0 ? 'danger' : 'success'),
 
-            Stat::make('Daily Milk Yield Recorded', number_format($todayMilk, 1) . ' Litres')
+            Stat::make('Daily Milk Yield Recorded', number_format($todayMilk, 1).' Litres')
                 ->description('+12.4% yield gain this week')
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
                 ->chart([120, 128, 134, 139, 142.5])
