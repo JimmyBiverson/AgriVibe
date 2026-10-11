@@ -155,4 +155,96 @@
     .agri-prose td {
         @apply border border-sand-200 px-3 py-2;
     }
+
+    /* 3D Agricultural Styling & Depth Tokens */
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+    .perspective-1500 {
+        perspective: 1500px;
+    }
+    .preserve-3d {
+        transform-style: preserve-3d;
+    }
+    .backface-hidden {
+        backface-visibility: hidden;
+    }
+    .card-3d {
+        transform-style: preserve-3d;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+    }
+    .card-3d:hover {
+        transform: translateY(-6px) rotateX(4deg) rotateY(-2deg) scale(1.015);
+        box-shadow: 0 25px 35px -10px rgba(13, 34, 23, 0.18), 0 0 20px -5px rgba(61, 139, 92, 0.25);
+    }
+    .card-3d-subtle {
+        transform-style: preserve-3d;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+    }
+    .card-3d-subtle:hover {
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: 0 20px 30px -10px rgba(15, 36, 25, 0.12);
+    }
+    .glow-leaf {
+        box-shadow: 0 0 25px -4px rgba(42, 111, 71, 0.5), 0 0 10px -2px rgba(95, 168, 122, 0.3);
+    }
+    .glow-gold {
+        box-shadow: 0 0 25px -4px rgba(222, 175, 47, 0.55), 0 0 12px -2px rgba(242, 221, 142, 0.4);
+    }
+    .glow-emerald {
+        box-shadow: 0 0 30px -4px rgba(16, 185, 129, 0.55), 0 0 15px -2px rgba(52, 211, 153, 0.35);
+    }
+    .glass-3d {
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 20px 35px -10px rgba(13, 34, 23, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    }
+    .glass-3d-dark {
+        background: rgba(13, 34, 23, 0.82);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: 0 25px 45px -15px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    .glass-pill {
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    @keyframes floatSlow {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-8px) rotate(1deg); }
+    }
+    @keyframes floatReverse {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(8px) rotate(-1deg); }
+    }
+    @keyframes pulseGlow {
+        0%, 100% { opacity: 0.85; filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.5)); }
+        50% { opacity: 1; filter: drop-shadow(0 0 22px rgba(52, 211, 153, 0.9)); }
+    }
+    @keyframes marquee {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-50%); }
+    }
+    .animate-float-slow {
+        animation: floatSlow 6s ease-in-out infinite;
+    }
+    .animate-float-reverse {
+        animation: floatReverse 7s ease-in-out infinite;
+    }
+    .animate-pulse-glow {
+        animation: pulseGlow 3s ease-in-out infinite;
+    }
+    .animate-marquee {
+        display: flex;
+        width: 200%;
+        animation: marquee 28s linear infinite;
+    }
+    .animate-marquee:hover {
+        animation-play-state: paused;
+    }
 }
