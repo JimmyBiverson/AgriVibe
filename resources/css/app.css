@@ -1,0 +1,158 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../../app/Filament/**/*.php';
+@source '../../resources/views/**/*.blade.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Poppins', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+
+    /* Brand green scale (leaf) */
+    --color-leaf-50: #f0f8f1;
+    --color-leaf-100: #dceedf;
+    --color-leaf-200: #bcdec3;
+    --color-leaf-300: #8fc6a0;
+    --color-leaf-400: #5fa87a;
+    --color-leaf-500: #3d8b5c;
+    --color-leaf-600: #2a6f47;
+    --color-leaf-700: #22593b;
+    --color-leaf-800: #1e4731;
+    --color-leaf-900: #193b29;
+    --color-leaf-950: #0d2217;
+
+    /* Forest (deep green) */
+    --color-forest-400: #3e7d55;
+    --color-forest-500: #2c613f;
+    --color-forest-600: #214c33;
+    --color-forest-700: #1a3c29;
+    --color-forest-800: #142e20;
+    --color-forest-900: #0f2419;
+    --color-forest-950: #081612;
+
+    /* Soft gold */
+    --color-gold-50: #fdf9eb;
+    --color-gold-100: #f9efc8;
+    --color-gold-200: #f2dd8e;
+    --color-gold-300: #e9c655;
+    --color-gold-400: #deaf2f;
+    --color-gold-500: #c99424;
+    --color-gold-600: #ad731d;
+    --color-gold-700: #8a531c;
+    --color-gold-800: #74421d;
+    --color-gold-900: #63371e;
+
+    /* Earth / sand neutrals */
+    --color-sand-25: #fdfcf8;
+    --color-sand-50: #fbf8f0;
+    --color-sand-100: #f4eedd;
+    --color-sand-200: #e8ddc2;
+    --color-sand-300: #d8c59d;
+    --color-sand-400: #c7ab78;
+    --color-sand-500: #b7945f;
+    --color-sand-600: #a27e50;
+    --color-sand-700: #866543;
+    --color-sand-800: #6f533a;
+    --color-sand-900: #5c4531;
+
+    /* Bark */
+    --color-bark-500: #7a5c3e;
+    --color-bark-700: #57402a;
+    --color-bark-800: #463323;
+    --color-bark-900: #382918;
+
+    /* Accent actions */
+    --color-berry-500: #c2410c;
+    --color-berry-600: #a3360a;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-sand-50 text-leaf-950 antialiased;
+        text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+        @apply bg-leaf-200 text-leaf-900;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        @apply font-display;
+    }
+
+    :focus-visible {
+        @apply outline-2 outline-offset-2 outline-leaf-500;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-sand-100;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply rounded-full bg-leaf-300;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-leaf-400;
+    }
+}
+
+@layer components {
+    .agri-prose {
+        @apply text-base leading-7 text-leaf-900;
+    }
+
+    .agri-prose h2 {
+        @apply mt-8 mb-3 text-2xl font-semibold text-leaf-900;
+    }
+
+    .agri-prose h3 {
+        @apply mt-6 mb-2 text-xl font-semibold text-leaf-900;
+    }
+
+    .agri-prose p {
+        @apply mb-4;
+    }
+
+    .agri-prose ul {
+        @apply mb-4 list-disc space-y-1 pl-6;
+    }
+
+    .agri-prose ol {
+        @apply mb-4 list-decimal space-y-1 pl-6;
+    }
+
+    .agri-prose a {
+        @apply font-medium text-leaf-600 underline decoration-leaf-300 underline-offset-2 hover:text-leaf-800;
+    }
+
+    .agri-prose blockquote {
+        @apply my-6 border-l-4 border-gold-300 bg-sand-100 px-4 py-3 italic text-leaf-800;
+    }
+
+    .agri-prose table {
+        @apply mb-6 w-full border-collapse overflow-hidden rounded-lg text-sm;
+    }
+
+    .agri-prose th {
+        @apply bg-leaf-800 px-3 py-2 text-left font-semibold text-white;
+    }
+
+    .agri-prose td {
+        @apply border border-sand-200 px-3 py-2;
+    }
+}
