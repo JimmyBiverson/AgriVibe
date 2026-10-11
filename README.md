@@ -13,12 +13,20 @@ AgriVibe is a production-ready, 3D-enhanced agribusiness and veterinary manageme
 - **In-Browser 3D Profitability & Feed Calculator**: Estimate feed requirements (50kg bags), break-even costs, gross revenue, and projected net profits for Broilers, Layers, and Tilapia ponds.
 - **Universal Inclusion (SMS & USSD)**: Integrated simulation for offline farmers using basic 2G feature phones (*284*40# USSD and SMS commands).
 
-### 2. Multi-Role User Workspaces
-- **Farmer**: Herd/flock batch registers, milk & egg logs, vaccination calendar with mandatory medicine withdrawal warnings, profit calculations.
-- **Veterinary Doctor**: Clinical appointments, telemedicine triage, digital prescription creation.
-- **Buyer**: Wholesale produce ordering, sourcing requests, live price trends.
-- **Supplier**: Agricultural inputs, feed inventory, stock reorders.
-- **Trainer**: Agrivibe Academy agricultural courses and certifications.
+### 2. Multi-Role User Workspaces & 3D Dashboards
+- **Farmer Workspace**:
+  - **Live Herd & Flock Registry**: Track individual cattle/goats with ear tags, RFID, breed, weight, reproductive status, and market valuation.
+  - **Flock & Pond Batches**: Broiler and layer batches with real-time livability %, target Feed Conversion Ratio (FCR), and aquaculture pond metrics.
+  - **Production Ledger**: Daily milk yield and egg collection logs, tracking good trays vs cracked/retained home use.
+  - **Consumer Safety Warning**: Active antibiotic and drug withdrawal period tracker with automatic "HOLD DISPATCH" warnings.
+  - **Cash Flow & ROI**: Track farm revenues, feeds, veterinary medicine, and labor costs.
+  - **Daily Chores**: Automated task reminders with priority badges.
+- **Veterinary Doctor Workspace**:
+  - Live triage schedule, telemedicine consultations, emergency farm call requests, and clinical histories.
+- **Marketplace Buyer & Supplier Workspaces**:
+  - Wholesale farm produce catalogs, livestock listings, feed input stock, and direct ordering.
+- **Role Switcher**:
+  - Integrated top bar switcher for testing and exploring each role workspace instantly.
 
 ### 3. Back-Office Admin Intelligence (Filament v5)
 - Glowing gradient line charts for platform engagement.
