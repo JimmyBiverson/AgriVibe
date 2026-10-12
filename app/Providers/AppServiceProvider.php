@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton(AgriSettings::class, fn () => new AgriSettings());
+        $this->app->singleton(AgriSettings::class, fn () => new AgriSettings);
     }
 
     public function boot(): void

@@ -235,7 +235,7 @@ class FarmOperationsSeeder extends Seeder
                     'transaction_date' => now()->subDays(rand(1, 5)),
                     'amount' => $f['amt'],
                     'currency' => 'UGX',
-                    'reference_number' => 'TXN-' . strtoupper(Str::random(6)),
+                    'reference_number' => 'TXN-'.strtoupper(Str::random(6)),
                 ]
             );
         }
@@ -317,7 +317,7 @@ class FarmOperationsSeeder extends Seeder
 
         // 9. SMS Delivery Logs
         $smsEntries = [
-            ['msg' => 'AgriVibe Alert: Cow #UG-KMI-101 milk withdrawal active until ' . now()->addDays(3)->format('d M') . '. Do not consume.', 'dir' => 'outgoing', 'status' => 'delivered'],
+            ['msg' => 'AgriVibe Alert: Cow #UG-KMI-101 milk withdrawal active until '.now()->addDays(3)->format('d M').'. Do not consume.', 'dir' => 'outgoing', 'status' => 'delivered'],
             ['msg' => 'Reminder: Telemedicine appointment with Dr. Moses Okello scheduled today at 16:30.', 'dir' => 'outgoing', 'status' => 'delivered'],
             ['msg' => 'USSD *284*40# query for Maize wholesale price answered: 1,250 UGX/kg in Kampala.', 'dir' => 'incoming', 'status' => 'delivered'],
             ['msg' => 'Daily farm report: 142 Litres milk recorded, 8 trays eggs collected. Net margin +28.4%.', 'dir' => 'outgoing', 'status' => 'delivered'],

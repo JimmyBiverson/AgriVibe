@@ -17,14 +17,14 @@
                     <div class="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-950/70 px-4 py-1.5 text-xs font-semibold text-emerald-300 shadow-lg shadow-emerald-950/50 backdrop-blur">
                         <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
                         <x-ui.icon name="sparkles" class="h-3.5 w-3.5 text-gold-400" />
-                        Uganda's Next-Gen 3D Smart Agribusiness Ecosystem
+                        Uganda's Leading Smart Agribusiness Ecosystem
                     </div>
 
                     <h1 class="mt-6 font-display text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
                         Smart Farming.<br>
                         Higher Yields.<br>
                         <span class="bg-gradient-to-r from-emerald-400 via-gold-300 to-emerald-200 bg-clip-text text-transparent">
-                            Complete 3D Visibility.
+                            Complete Farm Visibility & Control.
                         </span>
                     </h1>
 
@@ -54,7 +54,7 @@
                                 class="w-full border-0 bg-transparent px-3 text-sm text-white placeholder:text-leaf-200/50 focus:outline-none focus:ring-0"
                                 autocomplete="off" />
                             <x-ui.button variant="primary" size="md" type="submit" class="shrink-0 bg-emerald-600 hover:bg-emerald-500 shadow-md">
-                                Search 3D Base
+                                Search Knowledge Base
                             </x-ui.button>
                         </form>
                         {{-- Popular Tags --}}
@@ -68,25 +68,65 @@
                     </div>
                 </div>
 
-                {{-- Right Column: 3D Isometric Agricultural Showcase Stage --}}
-                <div class="lg:col-span-5 perspective-1000">
+                {{-- Right Column: Agricultural Showcase Stage --}}
+                <div class="lg:col-span-5 perspective-1000" x-data="{ activeModel: 'cattle' }">
                     <div class="relative mx-auto max-w-md preserve-3d">
-                        {{-- Central 3D Glass Master Hub --}}
+                        {{-- Central Master Hub Card --}}
                         <div class="relative rounded-3xl border border-emerald-400/30 bg-gradient-to-b from-forest-900/90 to-forest-950/95 p-6 shadow-2xl shadow-black/80 backdrop-blur-2xl transition-transform duration-500 hover:rotate-x-2 hover:rotate-y-2">
-                            {{-- Top Header of 3D Hub --}}
+                            {{-- Top Header of Farm Hub --}}
                             <div class="flex items-center justify-between border-b border-white/10 pb-4">
                                 <div class="flex items-center gap-3">
                                     <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-400/30">
                                         🌱
                                     </span>
                                     <div>
-                                        <h3 class="text-sm font-bold text-white">Nakato Family Farm Hub</h3>
-                                        <p class="text-xs text-emerald-300/80">Kumi District · Connected Live</p>
+                                        <h3 class="text-sm font-bold text-white">Nakato Precision Farm Hub</h3>
+                                        <p class="text-xs text-emerald-300/80">Kumi District · Live Telemetry</p>
                                     </div>
                                 </div>
                                 <span class="rounded-full bg-emerald-500/20 px-2.5 py-1 text-[11px] font-semibold text-emerald-300 ring-1 ring-emerald-400/40">
-                                    ● 3D Sync Active
+                                    ● Live Telemetry
                                 </span>
+                            </div>
+
+                            {{-- Object Showcase --}}
+                            <div class="my-4 relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-b from-forest-950 to-slate-950 p-2 text-center">
+                                <div class="relative mx-auto flex items-center justify-center p-2">
+                                    <template x-if="activeModel === 'cattle'">
+                                        <div class="transition-all duration-500">
+                                            <img src="{{ asset('images/3d/dairy-cow.png') }}" alt="Dairy Cattle" class="mx-auto h-48 w-48 object-contain drop-shadow-2xl hover:scale-105 transition-transform" />
+                                            <div class="mt-2 text-xs font-semibold text-emerald-300">Holstein-Friesian Dairy Cow (#KMI-101)</div>
+                                            <div class="text-[11px] text-slate-400">Pasture Pedestal · Daily Yield 42.5 L</div>
+                                        </div>
+                                    </template>
+                                    <template x-if="activeModel === 'poultry'">
+                                        <div class="transition-all duration-500">
+                                            <img src="{{ asset('images/3d/poultry-hen.png') }}" alt="Poultry Hen" class="mx-auto h-48 w-48 object-contain drop-shadow-2xl hover:scale-105 transition-transform" />
+                                            <div class="mt-2 text-xs font-semibold text-amber-300">Kuroiler Layer Flock (#FLK-04)</div>
+                                            <div class="text-[11px] text-slate-400">Egg Crates & Grain · 98.6% Livability</div>
+                                        </div>
+                                    </template>
+                                    <template x-if="activeModel === 'fish'">
+                                        <div class="transition-all duration-500">
+                                            <img src="{{ asset('images/3d/fish-pond.png') }}" alt="Fish Pond" class="mx-auto h-48 w-48 object-contain drop-shadow-2xl hover:scale-105 transition-transform" />
+                                            <div class="mt-2 text-xs font-semibold text-cyan-300">Tilapia Earthen Pond (#PND-02)</div>
+                                            <div class="text-[11px] text-slate-400">Cutaway View · Solar Aerator Active</div>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                {{-- Model Selector Buttons --}}
+                                <div class="mt-2 flex items-center justify-center gap-1.5 border-t border-white/10 pt-2">
+                                    <button type="button" @click="activeModel = 'cattle'" :class="activeModel === 'cattle' ? 'bg-emerald-500 text-white font-bold' : 'bg-white/5 text-slate-300 hover:bg-white/10'" class="rounded-lg px-2.5 py-1 text-[11px] transition">
+                                        🐄 Dairy Cattle
+                                    </button>
+                                    <button type="button" @click="activeModel = 'poultry'" :class="activeModel === 'poultry' ? 'bg-amber-500 text-slate-950 font-bold' : 'bg-white/5 text-slate-300 hover:bg-white/10'" class="rounded-lg px-2.5 py-1 text-[11px] transition">
+                                        🐔 Poultry Flock
+                                    </button>
+                                    <button type="button" @click="activeModel = 'fish'" :class="activeModel === 'fish' ? 'bg-cyan-500 text-slate-950 font-bold' : 'bg-white/5 text-slate-300 hover:bg-white/10'" class="rounded-lg px-2.5 py-1 text-[11px] transition">
+                                        🐟 Aquaculture Pond
+                                    </button>
+                                </div>
                             </div>
 
                             {{-- Live Farm Sector Metrics Grid --}}
@@ -403,7 +443,7 @@
         </div>
     </section>
 
-    {{-- Interactive 3D Farm Profitability & Rations Calculator Preview --}}
+    {{-- Interactive Farm Profitability & Rations Calculator Preview --}}
     <section class="bg-sand-100/70 py-20 border-y border-sand-200">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" x-data="{
             enterprise: 'broiler',
@@ -445,7 +485,7 @@
                     Smart Agribusiness Tools
                 </span>
                 <h2 class="mt-3 font-display text-3xl font-extrabold tracking-tight text-forest-900 sm:text-4xl">
-                    Instant 3D Farm Profitability & Rations Calculator
+                    Instant Farm Enterprise Profitability &amp; Feed Forecaster
                 </h2>
                 <p class="mt-2 text-base text-leaf-800/70">
                     Estimate feed requirements, total production costs, break-even prices, and projected net profits before spending a single shilling.

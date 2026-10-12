@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
-use App\Models\EnterpriseType;
+use App\Models\Farm;
+use App\Models\Species;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,8 @@ class HomeController extends Controller
         $stats = [
             'articles' => Article::published()->count(),
             'categories' => $categories->count(),
-            'farms' => \App\Models\Farm::count(),
-            'species' => \App\Models\Species::count(),
+            'farms' => Farm::count(),
+            'species' => Species::count(),
         ];
 
         $marketPrices = [

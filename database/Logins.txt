@@ -1,0 +1,1 @@
+Admin access: Go to http://127.0.0.1:8089/admin/login (or your server URL), sign in with admin@agrivibe.test / password. The admin panel is powered by Filament v5 at /admin. Demo users (farmer@agrivibe.test, vet@agrivibe.test, buyer@agrivibe.test, supplier@agrivibe.test, trainer@agrivibe.test) also exist with password password.

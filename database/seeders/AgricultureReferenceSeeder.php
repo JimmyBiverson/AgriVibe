@@ -178,7 +178,7 @@ class AgricultureReferenceSeeder extends Seeder
                     'dosage' => $dosage,
                     'route' => $route,
                     'is_active' => true,
-                    'description' => "Store between 2-8°C. Keep the cold chain unbroken.",
+                    'description' => 'Store between 2-8°C. Keep the cold chain unbroken.',
                 ],
             );
         }

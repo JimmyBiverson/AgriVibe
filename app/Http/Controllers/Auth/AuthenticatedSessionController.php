@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Notifications\OtpNotification;
+use App\Support\OneTimeCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
@@ -32,7 +35,7 @@ class AuthenticatedSessionController extends Controller
             ]);
         }
 
-        $user = \App\Models\User::query()->where('email', $request->email)->first();
+        $user = User::query()->where('email', $request->email)->first();
 
         if ($user && in_array($user->status, ['pending'], true)) {
             throw ValidationException::withMessages([
@@ -56,8 +59,8 @@ class AuthenticatedSessionController extends Controller
 
         // 2FA (authenticator or email OTP) enabled for this account.
         if ($user->two_factor_secret) {
-            $code = app(\App\Support\OneTimeCode::class)->issue($user, 'login_2fa', 'email');
-            $user->notify(new \App\Notifications\OtpNotification($code, 'login'));
+            $code = app(OneTimeCode::class)->issue($user, 'login_2fa', 'email');
+            $user->notify(new OtpNotification($code, 'login'));
 
             $request->session()->put('2fa_user_id', $user->id);
             Auth::logout();
@@ -80,7 +83,7 @@ class AuthenticatedSessionController extends Controller
         return redirect()->route('home');
     }
 
-    protected function recordLogin(Request $request, \App\Models\User $user): void
+    protected function recordLogin(Request $request, User $user): void
     {
         $user->update([
             'last_login_at' => now(),

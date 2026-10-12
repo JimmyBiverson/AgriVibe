@@ -11,7 +11,7 @@
                 </span>
                 <div>
                     <h3 class="text-base font-bold tracking-tight text-white flex items-center gap-2">
-                        AgriVibe 3D System Intelligence & Telemetry Core
+                        AgriVibe System Intelligence & Telemetry Core
                         <span class="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[11px] font-semibold text-emerald-400 ring-1 ring-emerald-500/40">
                             <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span> LIVE
                         </span>

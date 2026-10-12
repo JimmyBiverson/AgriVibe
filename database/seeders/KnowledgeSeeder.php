@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Faq;
-use App\Models\Species;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
