@@ -66,6 +66,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
+    Route::prefix('farm')->name('farm.')->group(function () {
+        Route::get('/animals', fn () => view('farm.animals', ['farmId' => request()->integer('farm') ?: null]))->name('animals');
+        Route::get('/batches', fn () => view('farm.batches', ['farmId' => request()->integer('farm') ?: null]))->name('batches');
+        Route::get('/production', fn () => view('farm.production', ['farmId' => request()->integer('farm') ?: null]))->name('production');
+        Route::get('/finances', fn () => view('farm.finances', ['farmId' => request()->integer('farm') ?: null]))->name('finances');
+        Route::get('/tasks', fn () => view('farm.tasks', ['farmId' => request()->integer('farm') ?: null]))->name('tasks');
+    });
+
     Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])->name('verification.notice');
     Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
         ->middleware('throttle:6,1')

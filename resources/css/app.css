@@ -248,3 +248,18 @@
         animation-play-state: paused;
     }
 }
+
+@layer components {
+    .form-label {
+        @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-leaf-700;
+    }
+
+    .form-input {
+        @apply w-full rounded-xl border border-sand-300 bg-white px-3 py-2 text-sm text-leaf-950 shadow-sm transition
+            placeholder:text-leaf-400 focus:border-leaf-500 focus:outline-none focus:ring-2 focus:ring-leaf-500/30;
+    }
+
+    .form-error {
+        @apply mt-1 text-xs font-medium text-berry-600;
+    }
+}

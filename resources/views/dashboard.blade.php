@@ -146,13 +146,14 @@
                 <h2 class="font-display text-lg font-bold text-forest-900">Quick Actions</h2>
                 <p class="text-xs text-leaf-600">Jump straight into daily farm work</p>
             </div>
+            @php $staff = $user->isStaff(); @endphp
             <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-                <x-ui.quick-action icon="plus" title="Register Animal" description="Add to herd" :href="url('/admin/animals/create')" color="emerald" />
-                <x-ui.quick-action icon="list" title="Add Batch" description="Flock or pond" :href="url('/admin/animal-batches/create')" color="cyan" />
-                <x-ui.quick-action icon="beaker" title="Record Production" description="Milk / eggs / fish" :href="url('/admin/production-records/create')" color="gold" />
-                <x-ui.quick-action icon="cash" title="Log Finance" description="Income or expense" :href="url('/admin/farm-finances/create')" color="emerald" />
-                <x-ui.quick-action icon="calendar" title="Create Task" description="Assign a chore" :href="url('/admin/farm-tasks/create')" color="amber" />
-                <x-ui.quick-action icon="bag" title="New Listing" description="Sell on market" :href="url('/admin/marketplace-items/create')" color="emerald" />
+                <x-ui.quick-action icon="plus" title="Register Animal" description="Add to herd" :href="$staff ? url('/admin/animals/create') : route('farm.animals', ['farm' => $farm?->id])" color="emerald" />
+                <x-ui.quick-action icon="list" title="Add Batch" description="Flock or pond" :href="$staff ? url('/admin/animal-batches/create') : route('farm.batches', ['farm' => $farm?->id])" color="cyan" />
+                <x-ui.quick-action icon="beaker" title="Record Production" description="Milk / eggs / fish" :href="$staff ? url('/admin/production-records/create') : route('farm.production', ['farm' => $farm?->id])" color="gold" />
+                <x-ui.quick-action icon="cash" title="Log Finance" description="Income or expense" :href="$staff ? url('/admin/farm-finances/create') : route('farm.finances', ['farm' => $farm?->id])" color="emerald" />
+                <x-ui.quick-action icon="calendar" title="Create Task" description="Assign a chore" :href="$staff ? url('/admin/farm-tasks/create') : route('farm.tasks', ['farm' => $farm?->id])" color="amber" />
+                <x-ui.quick-action icon="bag" title="New Listing" description="Sell on market" :href="$staff ? url('/admin/marketplace-items/create') : route('section.marketplace')" color="emerald" />
             </div>
         </section>
 
