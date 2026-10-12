@@ -11,7 +11,6 @@ use App\Models\Farm;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -21,9 +20,11 @@ class FarmResource extends Resource
 {
     protected static ?string $model = Farm::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedHomeModern;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-home-modern';
 
     protected static string|UnitEnum|null $navigationGroup = 'Farm Operations';
+
+    protected static ?string $navigationLabel = 'Farms';
 
     protected static ?int $navigationSort = 1;
 
