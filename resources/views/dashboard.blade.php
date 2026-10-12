@@ -31,6 +31,9 @@
 
                 {{-- Role Switcher Bar (For Easy Exploration) --}}
                 <div class="flex flex-wrap items-center gap-2">
+                    @if ($farms->isNotEmpty())
+                        <x-user-farm-switcher :farms="$farms" :current-farm="$farm" :user="$user" />
+                    @endif
                     <span class="text-xs text-leaf-200/60 mr-1 hidden sm:inline">Role View:</span>
                     <a href="{{ route('dashboard', ['role' => 'farmer']) }}"
                         class="rounded-xl px-3 py-1.5 text-xs font-semibold transition {{ $role === 'farmer' ? 'bg-emerald-500 text-forest-950 font-bold shadow-md' : 'bg-white/10 text-leaf-100 hover:bg-white/20' }}">
@@ -136,6 +139,72 @@
                 <p class="mt-1 text-xs text-amber-700 font-semibold">⚠️ 2 Urgent chores due today</p>
             </div>
         </div>
+
+        {{-- Quick Actions --}}
+        <section class="space-y-3">
+            <div class="flex items-center justify-between">
+                <h2 class="font-display text-lg font-bold text-forest-900">Quick Actions</h2>
+                <p class="text-xs text-leaf-600">Jump straight into daily farm work</p>
+            </div>
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+                <x-ui.quick-action icon="plus" title="Register Animal" description="Add to herd" :href="url('/admin/animals/create')" color="emerald" />
+                <x-ui.quick-action icon="list" title="Add Batch" description="Flock or pond" :href="url('/admin/animal-batches/create')" color="cyan" />
+                <x-ui.quick-action icon="beaker" title="Record Production" description="Milk / eggs / fish" :href="url('/admin/production-records/create')" color="gold" />
+                <x-ui.quick-action icon="cash" title="Log Finance" description="Income or expense" :href="url('/admin/farm-finances/create')" color="emerald" />
+                <x-ui.quick-action icon="calendar" title="Create Task" description="Assign a chore" :href="url('/admin/farm-tasks/create')" color="amber" />
+                <x-ui.quick-action icon="bag" title="New Listing" description="Sell on market" :href="url('/admin/marketplace-items/create')" color="emerald" />
+            </div>
+        </section>
+
+        {{-- Alerts & Recent Activity --}}
+        <section class="grid gap-6 lg:grid-cols-3">
+            <div class="lg:col-span-2 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="font-display text-lg font-bold text-forest-900">Alerts &amp; Reminders</h2>
+                    @if ($alerts->isEmpty())
+                        <span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">All clear</span>
+                    @endif
+                </div>
+                <div class="space-y-3">
+                    @forelse ($alerts as $alert)
+                        @php
+                            $tone = match($alert['level']) {
+                                'danger' => 'border-berry-300 bg-berry-50 text-berry-900',
+                                'warning' => 'border-gold-300 bg-gold-50 text-gold-900',
+                                default => 'border-sky-300 bg-sky-50 text-sky-900',
+                            };
+                            $iconTone = match($alert['level']) {
+                                'danger' => 'bg-berry-500 text-white',
+                                'warning' => 'bg-gold-500 text-white',
+                                default => 'bg-sky-500 text-white',
+                            };
+                        @endphp
+                        <div class="flex items-start gap-3 rounded-2xl border p-4 {{ $tone }}">
+                            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl {{ $iconTone }}">
+                                <x-ui.icon :name="$alert['icon']" class="h-4.5 w-4.5" />
+                            </span>
+                            <div class="flex-1">
+                                <p class="text-sm font-bold">{{ $alert['title'] }}</p>
+                                <p class="mt-0.5 text-xs opacity-90">{{ $alert['description'] }}</p>
+                            </div>
+                            @if ($alert['href'])
+                                <a href="{{ $alert['href'] }}" class="shrink-0 text-xs font-semibold underline underline-offset-2">View</a>
+                            @endif
+                        </div>
+                    @empty
+                        <div class="rounded-2xl border border-sand-200 bg-white p-6 text-center">
+                            <span class="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                                <x-ui.icon name="check-circle" class="h-5 w-5" />
+                            </span>
+                            <p class="mt-2 text-sm font-semibold text-forest-900">No alerts right now</p>
+                            <p class="text-xs text-leaf-600">Your vaccination, chore and safety reminders will appear here.</p>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+
+            <x-ui.activity-timeline :items="$recentActivity" empty-message="Record production, finance or health events to see activity here." />
+        </section>
 
         {{-- Conditional View based on Role --}}
         @if ($role === 'farmer')
