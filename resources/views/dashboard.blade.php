@@ -526,6 +526,11 @@
                         <h3 class="font-display text-xl font-bold text-forest-900">Agribusiness Marketplace & Direct Trading</h3>
                         <p class="text-xs text-leaf-700">Source verified farm produce, compare prices, or dispatch inputs directly.</p>
                     </div>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="{{ route('marketplace.orders') }}" class="rounded-xl border border-sand-200 bg-white px-4 py-2 text-xs font-bold text-leaf-700 hover:bg-sand-50">My Orders</a>
+                        <a href="{{ route('marketplace.sales') }}" class="rounded-xl border border-sand-200 bg-white px-4 py-2 text-xs font-bold text-leaf-700 hover:bg-sand-50">Sales</a>
+                        <a href="{{ route('marketplace.shop') }}" class="rounded-xl bg-forest-900 px-4 py-2 text-xs font-bold text-white hover:bg-forest-800 shadow">Shop Now →</a>
+                    </div>
                 </div>
 
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -541,9 +546,9 @@
                                     <span class="text-[10px] text-leaf-500">Price:</span>
                                     <p class="font-mono text-sm font-black text-forest-900">UGX {{ number_format($item->price) }} / {{ $item->unit }}</p>
                                 </div>
-                                <button type="button" class="rounded-xl bg-forest-900 px-3 py-1.5 text-xs font-bold text-white hover:bg-forest-800">
-                                    Place Order
-                                </button>
+                                <a href="{{ route('marketplace.shop') }}" class="rounded-xl bg-forest-900 px-3 py-1.5 text-xs font-bold text-white hover:bg-forest-800">
+                                    Order Now
+                                </a>
                             </div>
                         </div>
                     @endforeach

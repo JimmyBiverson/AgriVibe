@@ -78,6 +78,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/vet/console', fn () => view('vet.console'))->name('vet.console');
 
+    Route::prefix('marketplace')->name('marketplace.')->group(function () {
+        Route::get('/shop', fn () => view('marketplace.shop'))->name('shop');
+        Route::get('/orders', fn () => view('marketplace.orders'))->name('orders');
+        Route::get('/sales', fn () => view('marketplace.sales'))->name('sales');
+    });
+
     Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])->name('verification.notice');
     Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
         ->middleware('throttle:6,1')

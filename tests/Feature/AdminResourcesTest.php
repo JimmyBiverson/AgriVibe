@@ -23,6 +23,7 @@ class AdminResourcesTest extends TestCase
             'vaccination schedules' => ['/admin/vaccination-schedules'],
             'farm finances' => ['/admin/farm-finances'],
             'marketplace items' => ['/admin/marketplace-items'],
+            'marketplace orders' => ['/admin/marketplace-orders'],
             'species' => ['/admin/species'],
             'breeds' => ['/admin/breeds'],
             'diseases' => ['/admin/diseases'],

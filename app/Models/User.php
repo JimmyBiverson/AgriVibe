@@ -85,6 +85,16 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
         return $this->hasMany(Farm::class, 'owner_id');
     }
 
+    public function marketplaceOrders(): HasMany
+    {
+        return $this->hasMany(MarketplaceOrder::class, 'buyer_id');
+    }
+
+    public function marketplaceSales(): HasMany
+    {
+        return $this->hasMany(MarketplaceOrder::class, 'seller_id');
+    }
+
     public function farmMemberships(): HasMany
     {
         return $this->hasMany(FarmMember::class);
