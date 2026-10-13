@@ -4,11 +4,15 @@ namespace Tests\Feature;
 
 use App\Livewire\Farm\AnimalManager;
 use App\Livewire\Farm\FinanceManager;
+use App\Livewire\Farm\HealthManager;
 use App\Livewire\Farm\TaskManager;
+use App\Livewire\Farm\VetRequestManager;
 use App\Models\Animal;
 use App\Models\Farm;
 use App\Models\FarmTask;
+use App\Models\HealthEvent;
 use App\Models\User;
+use App\Models\VetAppointment;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -23,7 +27,7 @@ class FarmerPagesTest extends TestCase
     {
         $farmer = $this->farmer();
 
-        foreach (['/farm/animals', '/farm/batches', '/farm/production', '/farm/finances', '/farm/tasks'] as $path) {
+        foreach (['/farm/animals', '/farm/batches', '/farm/production', '/farm/finances', '/farm/tasks', '/farm/health', '/farm/vet'] as $path) {
             $this->actingAs($farmer)->get($path)->assertStatus(200);
         }
     }
@@ -126,5 +130,66 @@ class FarmerPagesTest extends TestCase
         ]);
 
         FarmTask::where('title', 'Test vaccination round')->delete();
+    }
+
+    public function test_farmer_can_log_a_health_event_with_withdrawal(): void
+    {
+        $farmer = $this->farmer();
+        $farm = $farmer->ownedFarms()->first() ?? $farmer->farms()->first();
+
+        $this->actingAs($farmer);
+
+        $administered = now()->format('Y-m-d');
+
+        Livewire::test(HealthManager::class, ['farmId' => $farm->id])
+            ->set('data.event_type', 'vaccination')
+            ->set('data.title', 'Test Newcastle vaccine')
+            ->set('data.administered_date', $administered)
+            ->set('data.withdrawal_period_days', 3)
+            ->set('data.status', 'completed')
+            ->call('save')
+            ->assertHasNoErrors();
+
+        $this->assertDatabaseHas('health_events', [
+            'farm_id' => $farm->id,
+            'title' => 'Test Newcastle vaccine',
+            'safe_consumption_date' => now()->addDays(3)->format('Y-m-d'),
+        ]);
+
+        HealthEvent::where('title', 'Test Newcastle vaccine')->delete();
+    }
+
+    public function test_farmer_can_request_a_veterinarian(): void
+    {
+        $farmer = $this->farmer();
+        $farm = $farmer->ownedFarms()->first() ?? $farmer->farms()->first();
+
+        $vet = User::where('account_type', 'veterinarian')->first();
+
+        if (! $vet) {
+            $this->markTestSkipped('No veterinarian account exists to test requests.');
+        }
+
+        $this->actingAs($farmer);
+
+        Livewire::test(VetRequestManager::class, ['farmId' => $farm->id])
+            ->set('data.vet_id', $vet->id)
+            ->set('data.service_type', 'telemedicine')
+            ->set('data.scheduled_at', now()->addDay()->format('Y-m-d\TH:i'))
+            ->set('data.urgency', 'normal')
+            ->set('data.symptoms_description', 'Test: cow with fever for two days.')
+            ->call('save')
+            ->assertHasNoErrors();
+
+        $this->assertDatabaseHas('vet_appointments', [
+            'farmer_id' => $farmer->id,
+            'farm_id' => $farm->id,
+            'service_type' => 'telemedicine',
+        ]);
+
+        VetAppointment::where('farmer_id', $farmer->id)
+            ->where('farm_id', $farm->id)
+            ->where('symptoms_description', 'Test: cow with fever for two days.')
+            ->delete();
     }
 }

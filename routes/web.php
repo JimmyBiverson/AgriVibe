@@ -72,6 +72,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/production', fn () => view('farm.production', ['farmId' => request()->integer('farm') ?: null]))->name('production');
         Route::get('/finances', fn () => view('farm.finances', ['farmId' => request()->integer('farm') ?: null]))->name('finances');
         Route::get('/tasks', fn () => view('farm.tasks', ['farmId' => request()->integer('farm') ?: null]))->name('tasks');
+        Route::get('/health', fn () => view('farm.health', ['farmId' => request()->integer('farm') ?: null]))->name('health');
+        Route::get('/vet', fn () => view('farm.vet', ['farmId' => request()->integer('farm') ?: null]))->name('vet');
     });
 
     Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])->name('verification.notice');

@@ -9,8 +9,10 @@
         ['route' => 'farm.production', 'label' => 'Production', 'icon' => 'beaker'],
         ['route' => 'farm.finances', 'label' => 'Finance', 'icon' => 'cash'],
         ['route' => 'farm.tasks', 'label' => 'Tasks', 'icon' => 'calendar'],
+        ['route' => 'farm.health', 'label' => 'Animal Health', 'icon' => 'shield'],
+        ['route' => 'farm.vet', 'label' => 'Vet Requests', 'icon' => 'heart-pulse'],
         ['route' => 'section.marketplace', 'label' => 'Marketplace', 'icon' => 'bag'],
-        ['route' => 'section.find-vet', 'label' => 'Find a Vet', 'icon' => 'shield'],
+        ['route' => 'section.find-vet', 'label' => 'Find a Vet', 'icon' => 'search'],
         ['route' => 'knowledge.index', 'label' => 'Academy', 'icon' => 'academy'],
         ['route' => 'section.community', 'label' => 'Community', 'icon' => 'community'],
     ];

@@ -145,12 +145,14 @@
                 <p class="text-xs text-leaf-600">Jump straight into daily farm work</p>
             </div>
             @php $staff = $user->isStaff(); @endphp
-            <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
                 <x-ui.quick-action icon="plus" title="Register Animal" description="Add to herd" :href="$staff ? url('/admin/animals/create') : route('farm.animals', ['farm' => $farm?->id])" color="emerald" />
                 <x-ui.quick-action icon="list" title="Add Batch" description="Flock or pond" :href="$staff ? url('/admin/animal-batches/create') : route('farm.batches', ['farm' => $farm?->id])" color="cyan" />
                 <x-ui.quick-action icon="beaker" title="Record Production" description="Milk / eggs / fish" :href="$staff ? url('/admin/production-records/create') : route('farm.production', ['farm' => $farm?->id])" color="gold" />
                 <x-ui.quick-action icon="cash" title="Log Finance" description="Income or expense" :href="$staff ? url('/admin/farm-finances/create') : route('farm.finances', ['farm' => $farm?->id])" color="emerald" />
                 <x-ui.quick-action icon="calendar" title="Create Task" description="Assign a chore" :href="$staff ? url('/admin/farm-tasks/create') : route('farm.tasks', ['farm' => $farm?->id])" color="amber" />
+                <x-ui.quick-action icon="shield" title="Log Health" description="Vaccine / treatment" :href="$staff ? url('/admin/health-events/create') : route('farm.health', ['farm' => $farm?->id])" color="cyan" />
+                <x-ui.quick-action icon="heart-pulse" title="Request Vet" description="Book a vet" :href="$staff ? url('/admin/vet-appointments/create') : route('farm.vet', ['farm' => $farm?->id])" color="red" />
                 <x-ui.quick-action icon="bag" title="New Listing" description="Sell on market" :href="$staff ? url('/admin/marketplace-items/create') : route('section.marketplace')" color="emerald" />
             </div>
         </section>
