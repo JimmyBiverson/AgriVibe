@@ -486,9 +486,9 @@
                         <h3 class="font-display text-xl font-bold text-forest-900">Clinical Triage & Telemedicine Consultations</h3>
                         <p class="text-xs text-leaf-700">Manage patient farm calls, emergency field requests, and medical histories.</p>
                     </div>
-                    <span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800">
-                        License: VET-UG-2024-8891 (Active)
-                    </span>
+                    <a href="{{ route('vet.console') }}" class="rounded-xl bg-forest-900 px-4 py-2 text-xs font-bold text-white hover:bg-forest-800 shadow">
+                        Open Clinical Console →
+                    </a>
                 </div>
 
                 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

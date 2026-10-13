@@ -63,7 +63,14 @@ class DashboardController extends Controller
                 ->get()
             : collect();
 
-        $vetAppointments = VetAppointment::with(['farmer', 'animal', 'farm'])->latest('scheduled_at')->limit(8)->get();
+        $isVet = $role === 'veterinarian' || $user->account_type === 'veterinarian' || $user->hasRole('veterinarian');
+
+        $vetAppointments = VetAppointment::with(['farmer', 'animal', 'farm'])
+            ->when($isVet, fn ($query) => $query->where('vet_id', $user->id))
+            ->orderByRaw("CASE status WHEN 'pending' THEN 0 WHEN 'confirmed' THEN 1 ELSE 2 END")
+            ->orderBy('scheduled_at')
+            ->limit(8)
+            ->get();
 
         $marketplaceItems = MarketplaceItem::with('seller')->where('status', 'active')->latest()->limit(8)->get();
 

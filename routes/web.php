@@ -76,6 +76,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/vet', fn () => view('farm.vet', ['farmId' => request()->integer('farm') ?: null]))->name('vet');
     });
 
+    Route::get('/vet/console', fn () => view('vet.console'))->name('vet.console');
+
     Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])->name('verification.notice');
     Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
         ->middleware('throttle:6,1')

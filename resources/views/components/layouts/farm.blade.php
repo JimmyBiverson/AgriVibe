@@ -1,8 +1,8 @@
-@props(['title' => null, 'description' => null, 'farm' => null, 'farms' => null])
+@props(['title' => null, 'description' => null, 'farm' => null, 'farms' => null, 'nav' => null])
 @php
     $siteName = agri_setting('site_name', 'Agrivibe');
     $user = auth()->user();
-    $nav = [
+    $nav ??= [
         ['route' => 'dashboard', 'label' => 'Overview', 'icon' => 'home'],
         ['route' => 'farm.animals', 'label' => 'Livestock', 'icon' => 'heart-pulse'],
         ['route' => 'farm.batches', 'label' => 'Batches & Flocks', 'icon' => 'list'],
