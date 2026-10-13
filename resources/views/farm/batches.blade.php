@@ -1,3 +1,8 @@
-<x-layouts.app :title="'Batches & Flocks — '.agri_setting('site_name', 'Agrivibe')">
-    <livewire:farm.batch-manager :farm-id="$farmId" />
-</x-layouts.app>
+@php($farm = current_farm($farmId))
+<x-layouts.farm title="Batches & Flocks" :farm="$farm" :farms="available_farms()">
+    @if ($farm)
+        <livewire:farm.batch-manager :farm-id="$farm->id" />
+    @else
+        <x-farm.empty-state />
+    @endif
+</x-layouts.farm>

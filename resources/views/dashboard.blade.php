@@ -67,9 +67,7 @@
     </div>
 
     <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8" x-data="{
-        activeTab: 'animals',
-        showActionModal: false,
-        actionType: 'milk'
+        activeTab: 'animals'
     }">
         {{-- Mandatory Antibiotic/Medicine Withdrawal Alert Banner --}}
         @if ($withdrawalAlert)
@@ -240,9 +238,9 @@
                         <h3 class="font-display text-lg font-bold text-forest-900">Registered Herd Inventory</h3>
                         <p class="text-xs text-leaf-700">Track individual animal ear tags, RFID codes, lactation status, and market valuation.</p>
                     </div>
-                    <button type="button" @click="showActionModal = true; actionType = 'animal'" class="rounded-xl bg-forest-900 px-4 py-2 text-xs font-bold text-white hover:bg-forest-800 shadow">
-                        + Register New Animal
-                    </button>
+                    <a href="{{ route('farm.animals', ['farm' => $farm?->id]) }}" class="rounded-xl bg-forest-900 px-4 py-2 text-xs font-bold text-white hover:bg-forest-800 shadow">
+                        + Manage Livestock
+                    </a>
                 </div>
 
                 <div class="overflow-hidden rounded-2xl border border-sand-200 bg-white shadow-sm">
@@ -300,6 +298,9 @@
                         <h3 class="font-display text-lg font-bold text-forest-900">Batch Flocks & Aquaculture Ponds</h3>
                         <p class="text-xs text-leaf-700">Track broiler cycles, layer egg production batches, mortality rates, and feed conversion ratios.</p>
                     </div>
+                    <a href="{{ route('farm.batches', ['farm' => $farm?->id]) }}" class="rounded-xl bg-forest-900 px-4 py-2 text-xs font-bold text-white hover:bg-forest-800 shadow">
+                        + Manage Batches
+                    </a>
                 </div>
 
                 <div class="grid gap-6 md:grid-cols-3">
@@ -353,6 +354,9 @@
                         <h3 class="font-display text-lg font-bold text-forest-900">Daily Milk & Eggs Log</h3>
                         <p class="text-xs text-leaf-700">Audit production volumes, cracked eggs, home-use retention, and farm-gate sales.</p>
                     </div>
+                    <a href="{{ route('farm.production', ['farm' => $farm?->id]) }}" class="rounded-xl bg-forest-900 px-4 py-2 text-xs font-bold text-white hover:bg-forest-800 shadow">
+                        + Record Production
+                    </a>
                 </div>
 
                 <div class="overflow-hidden rounded-2xl border border-sand-200 bg-white shadow-sm">
@@ -387,6 +391,15 @@
 
             {{-- Tab 4: Farm Finances --}}
             <div x-show="activeTab === 'finances'" class="space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="font-display text-lg font-bold text-forest-900">Financial Ledger</h3>
+                        <p class="text-xs text-leaf-700">Income, expenses and net operating profit for this farm.</p>
+                    </div>
+                    <a href="{{ route('farm.finances', ['farm' => $farm?->id]) }}" class="rounded-xl bg-forest-900 px-4 py-2 text-xs font-bold text-white hover:bg-forest-800 shadow">
+                        + Manage Finance
+                    </a>
+                </div>
                 <div class="grid gap-4 sm:grid-cols-3">
                     <div class="rounded-2xl border border-sand-200 bg-emerald-50 p-5">
                         <p class="text-xs font-semibold text-emerald-800 uppercase">Total Income</p>
@@ -442,6 +455,9 @@
                         <h3 class="font-display text-lg font-bold text-forest-900">Farm Chores & Reminders</h3>
                         <p class="text-xs text-leaf-700">Automated SMS alerts dispatched to farm staff for each pending chore.</p>
                     </div>
+                    <a href="{{ route('farm.tasks', ['farm' => $farm?->id]) }}" class="rounded-xl bg-forest-900 px-4 py-2 text-xs font-bold text-white hover:bg-forest-800 shadow">
+                        + Manage Tasks
+                    </a>
                 </div>
 
                 <div class="grid gap-3 sm:grid-cols-2">

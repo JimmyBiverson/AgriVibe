@@ -1,3 +1,8 @@
-<x-layouts.app :title="'Livestock Registry — '.agri_setting('site_name', 'Agrivibe')">
-    <livewire:farm.animal-manager :farm-id="$farmId" />
-</x-layouts.app>
+@php($farm = current_farm($farmId))
+<x-layouts.farm title="Livestock" :farm="$farm" :farms="available_farms()">
+    @if ($farm)
+        <livewire:farm.animal-manager :farm-id="$farm->id" />
+    @else
+        <x-farm.empty-state />
+    @endif
+</x-layouts.farm>

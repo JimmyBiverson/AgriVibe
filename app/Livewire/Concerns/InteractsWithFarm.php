@@ -19,12 +19,7 @@ trait InteractsWithFarm
      */
     protected function availableFarms(): Collection
     {
-        $user = auth()->user();
-
-        return $user->ownedFarms()->get()
-            ->merge($user->farms()->get())
-            ->unique('id')
-            ->values();
+        return available_farms();
     }
 
     protected function farm(): Farm

@@ -1,6 +1,4 @@
 <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-    <x-farm.nav :farm="$farm" :farms="$farms" />
-
     <div class="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
             <h1 class="font-display text-2xl font-bold text-forest-900">Production Records</h1>
